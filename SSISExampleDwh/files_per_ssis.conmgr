@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="files_per_ssis"
+  DTS:DTSID="{4F93329E-9F58-495F-BCCD-A53A1C4CDC84}"
+  DTS:CreationName="MULTIFILE">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:FileUsageType="2"
+      DTS:ConnectionString="C:\Temp\files_per_ssis" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

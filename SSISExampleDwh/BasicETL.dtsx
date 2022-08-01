@@ -1,0 +1,2368 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/10/2021 5:33:14 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NAUTILUS"
+  DTS:CreatorName="NAUTILUS\nemo"
+  DTS:DTSID="{3F00C035-3120-415E-A285-E480DAA326AB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1040"
+  DTS:ObjectName="BasicETL"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{F37BDB71-1CF1-4711-B500-7EF18FF03912}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NAUTILUS.example_db]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3FACF9A9-F2CE-41B3-9FA8-695937D28690}"
+      DTS:ObjectName="NAUTILUS.example_db">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=NAUTILUS;Initial Catalog=example_db;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{65432723-A4BB-416F-BBD1-A950A266DBD6}"
+      DTS:ObjectName="NAUTILUS.example_dwh">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=NAUTILUS;Initial Catalog=example_dwh;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Flow D_CUSTOMERS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Attività Flusso di dati"
+      DTS:DTSID="{83DE8689-34AC-4F3E-9738-52BE2BA2A3EE}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Flow D_CUSTOMERS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Flow D_CUSTOMERS\D_CUSTOMERS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destinazione OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;4"
+              description="Destinazione OLE DB"
+              name="D_CUSTOMERS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[D_CUSTOMERS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se i valori specificati per le colonne Identity verranno copiati nella destinazione. Se false, i valori delle colonne Identity verranno generati automaticamente nella destinazione. Applicabile solo se è abilitato il caricamento rapido."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se per le colonne con valori Null, tali valori verranno inseriti nella destinazione. Se false, per le colonne con valori Null verranno inseriti i valori predefiniti corrispondenti nella destinazione. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica le opzioni da utilizzare con il caricamento rapido. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica se vengono eseguiti commit durante l'inserimento dei dati. Il valore 0 indica che verrà eseguito un solo commit al termine dell'inserimento dei dati. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Inputs[Input destinazione OLE DB]"
+                  errorOrTruncationOperation="Inserimento"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Input destinazione OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Inputs[Input destinazione OLE DB].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Inputs[Input destinazione OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output origine OLE DB].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Inputs[Input destinazione OLE DB].Columns[DESCR]"
+                      cachedDataType="nText"
+                      cachedName="DESCR"
+                      externalMetadataColumnId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Inputs[Input destinazione OLE DB].ExternalColumns[DESCR]"
+                      lineageId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output origine OLE DB].Columns[DESCR]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Inputs[Input destinazione OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Inputs[Input destinazione OLE DB].ExternalColumns[DESCR]"
+                      dataType="nText"
+                      name="DESCR" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Outputs[Output errori destinazione OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Output errori destinazione OLE DB"
+                  synchronousInputId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Inputs[Input destinazione OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Outputs[Output errori destinazione OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Outputs[Output errori destinazione OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Outputs[Output errori destinazione OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Outputs[Output errori destinazione OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flow D_CUSTOMERS\Load tab_customers"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origine OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;7"
+              description="Origine OLE DB"
+              name="Load tab_customers"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[dbo].[tab_customers]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variabile che contiene il comando SQL da eseguire."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mapping tra i parametri nel comando SQL e le variabili."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flow D_CUSTOMERS\Load tab_customers.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output origine OLE DB]"
+                  name="Output origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output origine OLE DB].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output origine OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output origine OLE DB].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output origine OLE DB].Columns[DESCR]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output origine OLE DB].ExternalColumns[DESCR]"
+                      lineageId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output origine OLE DB].Columns[DESCR]"
+                      name="DESCR"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output origine OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output origine OLE DB].ExternalColumns[DESCR]"
+                      dataType="nText"
+                      name="DESCR" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output errori origine OLE DB]"
+                  isErrorOut="true"
+                  name="Output errori origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output errori origine OLE DB].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output errori origine OLE DB].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output errori origine OLE DB].Columns[DESCR]"
+                      dataType="nText"
+                      lineageId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output errori origine OLE DB].Columns[DESCR]"
+                      name="DESCR" />
+                    <outputColumn
+                      refId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Flow D_CUSTOMERS.Paths[Output origine OLE DB]"
+              endId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Inputs[Input destinazione OLE DB]"
+              name="Output origine OLE DB"
+              startId="Package\Flow D_CUSTOMERS\Load tab_customers.Outputs[Output origine OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Flow D_ITEMS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Attività Flusso di dati"
+      DTS:DTSID="{F02E05BC-2663-4F67-8733-D027769804DF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Flow D_ITEMS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Flow D_ITEMS\D_ITEMS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destinazione OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;4"
+              description="Destinazione OLE DB"
+              name="D_ITEMS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[D_ITEMS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se i valori specificati per le colonne Identity verranno copiati nella destinazione. Se false, i valori delle colonne Identity verranno generati automaticamente nella destinazione. Applicabile solo se è abilitato il caricamento rapido."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se per le colonne con valori Null, tali valori verranno inseriti nella destinazione. Se false, per le colonne con valori Null verranno inseriti i valori predefiniti corrispondenti nella destinazione. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica le opzioni da utilizzare con il caricamento rapido. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica se vengono eseguiti commit durante l'inserimento dei dati. Il valore 0 indica che verrà eseguito un solo commit al termine dell'inserimento dei dati. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flow D_ITEMS\D_ITEMS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB]"
+                  errorOrTruncationOperation="Inserimento"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Input destinazione OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB].Columns[DESCR]"
+                      cachedDataType="nText"
+                      cachedName="DESCR"
+                      externalMetadataColumnId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB].ExternalColumns[DESCR]"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].Columns[DESCR]" />
+                    <inputColumn
+                      refId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB].Columns[ID_GROUP]"
+                      cachedDataType="i4"
+                      cachedName="ID_GROUP"
+                      externalMetadataColumnId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB].ExternalColumns[ID_GROUP]"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].Columns[ID_GROUP]" />
+                    <inputColumn
+                      refId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB].Columns[PRICE]"
+                      cachedDataType="numeric"
+                      cachedName="PRICE"
+                      cachedPrecision="18"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB].ExternalColumns[PRICE]"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].Columns[PRICE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB].ExternalColumns[DESCR]"
+                      dataType="nText"
+                      name="DESCR" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB].ExternalColumns[ID_GROUP]"
+                      dataType="i4"
+                      name="ID_GROUP" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB].ExternalColumns[PRICE]"
+                      dataType="numeric"
+                      name="PRICE"
+                      precision="18"
+                      scale="6" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flow D_ITEMS\D_ITEMS.Outputs[Output errori destinazione OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Output errori destinazione OLE DB"
+                  synchronousInputId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow D_ITEMS\D_ITEMS.Outputs[Output errori destinazione OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ITEMS\D_ITEMS.Outputs[Output errori destinazione OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEMS\D_ITEMS.Outputs[Output errori destinazione OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ITEMS\D_ITEMS.Outputs[Output errori destinazione OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flow D_ITEMS\Load tab_items"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origine OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;7"
+              description="Origine OLE DB"
+              name="Load tab_items"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[dbo].[tab_items]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variabile che contiene il comando SQL da eseguire."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mapping tra i parametri nel comando SQL e le variabili."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flow D_ITEMS\Load tab_items.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB]"
+                  name="Output origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].Columns[DESCR]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].ExternalColumns[DESCR]"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].Columns[DESCR]"
+                      name="DESCR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].Columns[ID_GROUP]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].ExternalColumns[ID_GROUP]"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].Columns[ID_GROUP]"
+                      name="ID_GROUP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].Columns[PRICE]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].ExternalColumns[PRICE]"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].Columns[PRICE]"
+                      name="PRICE"
+                      precision="18"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].ExternalColumns[DESCR]"
+                      dataType="nText"
+                      name="DESCR" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].ExternalColumns[ID_GROUP]"
+                      dataType="i4"
+                      name="ID_GROUP" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB].ExternalColumns[PRICE]"
+                      dataType="numeric"
+                      name="PRICE"
+                      precision="18"
+                      scale="6" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output errori origine OLE DB]"
+                  isErrorOut="true"
+                  name="Output errori origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output errori origine OLE DB].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output errori origine OLE DB].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output errori origine OLE DB].Columns[DESCR]"
+                      dataType="nText"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output errori origine OLE DB].Columns[DESCR]"
+                      name="DESCR" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output errori origine OLE DB].Columns[ID_GROUP]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output errori origine OLE DB].Columns[ID_GROUP]"
+                      name="ID_GROUP" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output errori origine OLE DB].Columns[PRICE]"
+                      dataType="numeric"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output errori origine OLE DB].Columns[PRICE]"
+                      name="PRICE"
+                      precision="18"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Flow D_ITEMS.Paths[Output origine OLE DB]"
+              endId="Package\Flow D_ITEMS\D_ITEMS.Inputs[Input destinazione OLE DB]"
+              name="Output origine OLE DB"
+              startId="Package\Flow D_ITEMS\Load tab_items.Outputs[Output origine OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Flow D_ITEM_GROUPS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Attività Flusso di dati"
+      DTS:DTSID="{A01E77AA-C54E-43C5-9886-65CB3395CA9D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Flow D_ITEM_GROUPS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destinazione OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;4"
+              description="Destinazione OLE DB"
+              name="D_ITEM_GROUPS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[D_ITEM_GROUPS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se i valori specificati per le colonne Identity verranno copiati nella destinazione. Se false, i valori delle colonne Identity verranno generati automaticamente nella destinazione. Applicabile solo se è abilitato il caricamento rapido."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se per le colonne con valori Null, tali valori verranno inseriti nella destinazione. Se false, per le colonne con valori Null verranno inseriti i valori predefiniti corrispondenti nella destinazione. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica le opzioni da utilizzare con il caricamento rapido. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica se vengono eseguiti commit durante l'inserimento dei dati. Il valore 0 indica che verrà eseguito un solo commit al termine dell'inserimento dei dati. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Inputs[Input destinazione OLE DB]"
+                  errorOrTruncationOperation="Inserimento"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Input destinazione OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Inputs[Input destinazione OLE DB].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Inputs[Input destinazione OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output origine OLE DB].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Inputs[Input destinazione OLE DB].Columns[DESCR]"
+                      cachedDataType="nText"
+                      cachedName="DESCR"
+                      externalMetadataColumnId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Inputs[Input destinazione OLE DB].ExternalColumns[DESCR]"
+                      lineageId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output origine OLE DB].Columns[DESCR]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Inputs[Input destinazione OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Inputs[Input destinazione OLE DB].ExternalColumns[DESCR]"
+                      dataType="nText"
+                      name="DESCR" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Outputs[Output errori destinazione OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Output errori destinazione OLE DB"
+                  synchronousInputId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Inputs[Input destinazione OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Outputs[Output errori destinazione OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Outputs[Output errori destinazione OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Outputs[Output errori destinazione OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Outputs[Output errori destinazione OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origine OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;7"
+              description="Origine OLE DB"
+              name="Load tab_item_groups"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[dbo].[tab_item_groups]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variabile che contiene il comando SQL da eseguire."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mapping tra i parametri nel comando SQL e le variabili."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output origine OLE DB]"
+                  name="Output origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output origine OLE DB].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output origine OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output origine OLE DB].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output origine OLE DB].Columns[DESCR]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output origine OLE DB].ExternalColumns[DESCR]"
+                      lineageId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output origine OLE DB].Columns[DESCR]"
+                      name="DESCR"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output origine OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output origine OLE DB].ExternalColumns[DESCR]"
+                      dataType="nText"
+                      name="DESCR" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output errori origine OLE DB]"
+                  isErrorOut="true"
+                  name="Output errori origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output errori origine OLE DB].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output errori origine OLE DB].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output errori origine OLE DB].Columns[DESCR]"
+                      dataType="nText"
+                      lineageId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output errori origine OLE DB].Columns[DESCR]"
+                      name="DESCR" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Flow D_ITEM_GROUPS.Paths[Output origine OLE DB]"
+              endId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Inputs[Input destinazione OLE DB]"
+              name="Output origine OLE DB"
+              startId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Outputs[Output origine OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Flow D_ORDERS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Attività Flusso di dati"
+      DTS:DTSID="{6f4e929b-cbba-4f83-826a-5182f4aa9032}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Flow D_ORDERS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Flow D_ORDERS\D_ORDERS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destinazione OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;4"
+              description="Destinazione OLE DB"
+              name="D_ORDERS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[D_ORDERS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se i valori specificati per le colonne Identity verranno copiati nella destinazione. Se false, i valori delle colonne Identity verranno generati automaticamente nella destinazione. Applicabile solo se è abilitato il caricamento rapido."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se per le colonne con valori Null, tali valori verranno inseriti nella destinazione. Se false, per le colonne con valori Null verranno inseriti i valori predefiniti corrispondenti nella destinazione. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica le opzioni da utilizzare con il caricamento rapido. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica se vengono eseguiti commit durante l'inserimento dei dati. Il valore 0 indica che verrà eseguito un solo commit al termine dell'inserimento dei dati. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flow D_ORDERS\D_ORDERS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB]"
+                  errorOrTruncationOperation="Inserimento"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Input destinazione OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB].Columns[YEAR]"
+                      cachedDataType="i4"
+                      cachedName="YEAR"
+                      externalMetadataColumnId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB].ExternalColumns[YEAR]"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].Columns[YEAR]" />
+                    <inputColumn
+                      refId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB].Columns[NUMBER]"
+                      cachedDataType="i4"
+                      cachedName="NUMBER"
+                      externalMetadataColumnId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB].ExternalColumns[NUMBER]"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].Columns[NUMBER]" />
+                    <inputColumn
+                      refId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB].Columns[ID_CUSTOMER]"
+                      cachedDataType="i4"
+                      cachedName="ID_CUSTOMER"
+                      externalMetadataColumnId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB].ExternalColumns[ID_CUSTOMER]"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].Columns[ID_CUSTOMER]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB].ExternalColumns[YEAR]"
+                      dataType="i4"
+                      name="YEAR" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB].ExternalColumns[NUMBER]"
+                      dataType="i4"
+                      name="NUMBER" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB].ExternalColumns[ID_CUSTOMER]"
+                      dataType="i4"
+                      name="ID_CUSTOMER" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flow D_ORDERS\D_ORDERS.Outputs[Output errori destinazione OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Output errori destinazione OLE DB"
+                  synchronousInputId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow D_ORDERS\D_ORDERS.Outputs[Output errori destinazione OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ORDERS\D_ORDERS.Outputs[Output errori destinazione OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flow D_ORDERS\D_ORDERS.Outputs[Output errori destinazione OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ORDERS\D_ORDERS.Outputs[Output errori destinazione OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flow D_ORDERS\Load orders"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origine OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;7"
+              description="Origine OLE DB"
+              name="Load orders"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[dbo].[orders]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variabile che contiene il comando SQL da eseguire."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mapping tra i parametri nel comando SQL e le variabili."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flow D_ORDERS\Load orders.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB]"
+                  name="Output origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].Columns[YEAR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].ExternalColumns[YEAR]"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].Columns[YEAR]"
+                      name="YEAR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].Columns[NUMBER]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].ExternalColumns[NUMBER]"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].Columns[NUMBER]"
+                      name="NUMBER"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].Columns[ID_CUSTOMER]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].ExternalColumns[ID_CUSTOMER]"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].Columns[ID_CUSTOMER]"
+                      name="ID_CUSTOMER"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].ExternalColumns[YEAR]"
+                      dataType="i4"
+                      name="YEAR" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].ExternalColumns[NUMBER]"
+                      dataType="i4"
+                      name="NUMBER" />
+                    <externalMetadataColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB].ExternalColumns[ID_CUSTOMER]"
+                      dataType="i4"
+                      name="ID_CUSTOMER" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Flow D_ORDERS\Load orders.Outputs[Output errori origine OLE DB]"
+                  isErrorOut="true"
+                  name="Output errori origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output errori origine OLE DB].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output errori origine OLE DB].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output errori origine OLE DB].Columns[YEAR]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output errori origine OLE DB].Columns[YEAR]"
+                      name="YEAR" />
+                    <outputColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output errori origine OLE DB].Columns[NUMBER]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output errori origine OLE DB].Columns[NUMBER]"
+                      name="NUMBER" />
+                    <outputColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output errori origine OLE DB].Columns[ID_CUSTOMER]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output errori origine OLE DB].Columns[ID_CUSTOMER]"
+                      name="ID_CUSTOMER" />
+                    <outputColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flow D_ORDERS\Load orders.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flow D_ORDERS\Load orders.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Flow D_ORDERS.Paths[Output origine OLE DB]"
+              endId="Package\Flow D_ORDERS\D_ORDERS.Inputs[Input destinazione OLE DB]"
+              name="Output origine OLE DB"
+              startId="Package\Flow D_ORDERS\Load orders.Outputs[Output origine OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Flow F_ORDERLINES"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Attività Flusso di dati"
+      DTS:DTSID="{6dc4a63d-73ed-4d9c-b918-80d62ec273e3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Flow F_ORDERLINES"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Flow F_ORDERLINES\F_ORDERLINES"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destinazione OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;4"
+              description="Destinazione OLE DB"
+              name="F_ORDERLINES"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[F_ORDERLINES]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se i valori specificati per le colonne Identity verranno copiati nella destinazione. Se false, i valori delle colonne Identity verranno generati automaticamente nella destinazione. Applicabile solo se è abilitato il caricamento rapido."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se per le colonne con valori Null, tali valori verranno inseriti nella destinazione. Se false, per le colonne con valori Null verranno inseriti i valori predefiniti corrispondenti nella destinazione. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica le opzioni da utilizzare con il caricamento rapido. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica se vengono eseguiti commit durante l'inserimento dei dati. Il valore 0 indica che verrà eseguito un solo commit al termine dell'inserimento dei dati. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB]"
+                  errorOrTruncationOperation="Inserimento"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Input destinazione OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB].Columns[ID]"
+                      cachedDataType="i4"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].Columns[ID]" />
+                    <inputColumn
+                      refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB].Columns[ID_ORDER]"
+                      cachedDataType="i4"
+                      cachedName="ID_ORDER"
+                      externalMetadataColumnId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB].ExternalColumns[ID_ORDER]"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].Columns[ID_ORDER]" />
+                    <inputColumn
+                      refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB].Columns[ID_ITEM]"
+                      cachedDataType="i4"
+                      cachedName="ID_ITEM"
+                      externalMetadataColumnId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB].ExternalColumns[ID_ITEM]"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].Columns[ID_ITEM]" />
+                    <inputColumn
+                      refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB].Columns[QUANTITY]"
+                      cachedDataType="i4"
+                      cachedName="QUANTITY"
+                      externalMetadataColumnId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB].ExternalColumns[QUANTITY]"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].Columns[QUANTITY]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB].ExternalColumns[ID_ORDER]"
+                      dataType="i4"
+                      name="ID_ORDER" />
+                    <externalMetadataColumn
+                      refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB].ExternalColumns[ID_ITEM]"
+                      dataType="i4"
+                      name="ID_ITEM" />
+                    <externalMetadataColumn
+                      refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB].ExternalColumns[QUANTITY]"
+                      dataType="i4"
+                      name="QUANTITY" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Outputs[Output errori destinazione OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Output errori destinazione OLE DB"
+                  synchronousInputId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Outputs[Output errori destinazione OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flow F_ORDERLINES\F_ORDERLINES.Outputs[Output errori destinazione OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Outputs[Output errori destinazione OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flow F_ORDERLINES\F_ORDERLINES.Outputs[Output errori destinazione OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Flow F_ORDERLINES\Load order_lines"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origine OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;7"
+              description="Origine OLE DB"
+              name="Load order_lines"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[dbo].[order_lines]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Variabile che contiene il comando SQL da eseguire."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Mapping tra i parametri nel comando SQL e le variabili."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Flow F_ORDERLINES\Load order_lines.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB]"
+                  name="Output origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].Columns[ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].ExternalColumns[ID]"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].Columns[ID_ORDER]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].ExternalColumns[ID_ORDER]"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].Columns[ID_ORDER]"
+                      name="ID_ORDER"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].Columns[ID_ITEM]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].ExternalColumns[ID_ITEM]"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].Columns[ID_ITEM]"
+                      name="ID_ITEM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].Columns[QUANTITY]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].ExternalColumns[QUANTITY]"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].Columns[QUANTITY]"
+                      name="QUANTITY"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].ExternalColumns[ID_ORDER]"
+                      dataType="i4"
+                      name="ID_ORDER" />
+                    <externalMetadataColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].ExternalColumns[ID_ITEM]"
+                      dataType="i4"
+                      name="ID_ITEM" />
+                    <externalMetadataColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB].ExternalColumns[QUANTITY]"
+                      dataType="i4"
+                      name="QUANTITY" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output errori origine OLE DB]"
+                  isErrorOut="true"
+                  name="Output errori origine OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output errori origine OLE DB].Columns[ID]"
+                      dataType="i4"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output errori origine OLE DB].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output errori origine OLE DB].Columns[ID_ORDER]"
+                      dataType="i4"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output errori origine OLE DB].Columns[ID_ORDER]"
+                      name="ID_ORDER" />
+                    <outputColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output errori origine OLE DB].Columns[ID_ITEM]"
+                      dataType="i4"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output errori origine OLE DB].Columns[ID_ITEM]"
+                      name="ID_ITEM" />
+                    <outputColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output errori origine OLE DB].Columns[QUANTITY]"
+                      dataType="i4"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output errori origine OLE DB].Columns[QUANTITY]"
+                      name="QUANTITY" />
+                    <outputColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output errori origine OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output errori origine OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Flow F_ORDERLINES.Paths[Output origine OLE DB]"
+              endId="Package\Flow F_ORDERLINES\F_ORDERLINES.Inputs[Input destinazione OLE DB]"
+              name="Output origine OLE DB"
+              startId="Package\Flow F_ORDERLINES\Load order_lines.Outputs[Output origine OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Trunc D_CUSTOMERS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Attività Esegui SQL"
+      DTS:Disabled="True"
+      DTS:DTSID="{5765c92b-89ad-48f6-a825-9b80af116bd2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Trunc D_CUSTOMERS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{65432723-A4BB-416F-BBD1-A950A266DBD6}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.D_CUSTOMERS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Trunc D_ITEMS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Attività Esegui SQL"
+      DTS:Disabled="True"
+      DTS:DTSID="{9d3e7d34-50d8-4a8c-8b73-5bb295980168}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Trunc D_ITEMS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{65432723-A4BB-416F-BBD1-A950A266DBD6}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.D_ITEMS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Trunc D_ITEM_GROUPS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Attività Esegui SQL"
+      DTS:Disabled="True"
+      DTS:DTSID="{79513903-D9A9-42DF-803E-4B2CB409FD9C}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Trunc D_ITEM_GROUPS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{65432723-A4BB-416F-BBD1-A950A266DBD6}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.D_ITEM_GROUPS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Trunc D_ORDERS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Attività Esegui SQL"
+      DTS:Disabled="True"
+      DTS:DTSID="{0045bc64-3aec-4326-bc29-333423e2bdcb}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Trunc D_ORDERS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{65432723-A4BB-416F-BBD1-A950A266DBD6}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.D_ORDERS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Trunc F_ORDERLINES"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Attività Esegui SQL"
+      DTS:Disabled="True"
+      DTS:DTSID="{d883e6d8-3d23-40b9-90b0-1cfb7dbf47f7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Trunc F_ORDERLINES"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{65432723-A4BB-416F-BBD1-A950A266DBD6}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.F_ORDERLINES" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Vincolo]"
+      DTS:CreationName=""
+      DTS:DTSID="{40FDDF14-0D0B-4C52-BAB8-BD92C03359C2}"
+      DTS:From="Package\Flow D_ITEM_GROUPS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Vincolo"
+      DTS:To="Package\Trunc D_ITEMS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Vincolo 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{FF176D04-BA52-4424-BFB5-EF743621C00E}"
+      DTS:From="Package\Flow D_ITEMS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Vincolo 1"
+      DTS:To="Package\Trunc D_CUSTOMERS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Vincolo 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{F8ABBD90-BD90-4F40-B598-F2828E2AC9D3}"
+      DTS:From="Package\Flow D_CUSTOMERS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Vincolo 2"
+      DTS:To="Package\Trunc D_ORDERS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Vincolo 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{02209B23-8630-45E3-A4C6-2CAC4C850585}"
+      DTS:From="Package\Flow D_ORDERS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Vincolo 3"
+      DTS:To="Package\Trunc F_ORDERLINES" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Vincolo 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{A4D1D861-E105-43CC-A9BB-41412EC6D38A}"
+      DTS:From="Package\Trunc D_ITEM_GROUPS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Vincolo 4"
+      DTS:To="Package\Flow D_ITEM_GROUPS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Vincolo 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{48CB166C-9B4B-48C8-9804-127B2D0E3048}"
+      DTS:From="Package\Trunc D_ITEMS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Vincolo 5"
+      DTS:To="Package\Flow D_ITEMS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Vincolo 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{81E49136-C75A-4B80-9A5E-30874CD277FF}"
+      DTS:From="Package\Trunc D_CUSTOMERS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Vincolo 6"
+      DTS:To="Package\Flow D_CUSTOMERS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Vincolo 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{9C4A575C-0EA5-4FE0-9A78-4B7FABE06D77}"
+      DTS:From="Package\Trunc D_ORDERS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Vincolo 7"
+      DTS:To="Package\Flow D_ORDERS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Vincolo 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{C1E96D1F-FC5C-492B-AB3B-F8435DB71CD0}"
+      DTS:From="Package\Trunc F_ORDERLINES"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Vincolo 8"
+      DTS:To="Package\Flow F_ORDERLINES" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Questa sezione CDATA contiene le informazioni sul layout del pacchetto e include informazioni quali coordinate (x,y), larghezza e altezza.-->
+<!--Se si modifica manualmente la sezione e si commette un errore, è possibile eliminarla. -->
+<!--Sarà comunque possibile caricare manualmente il pacchetto, ma le informazioni precedenti sul layout verranno perse e gli elementi verranno nuovamente disposti nell'area di progettazione all'interno dell'apposita finestra.-->
+<Objects
+  Version="8">
+  <!--Ogni nodo seguente conterrà proprietà che non influiscono sul comportamento di runtime.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Flow D_CUSTOMERS"
+          TopLeft="290.5,174.5" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Flow D_ITEM_GROUPS"
+          TopLeft="282.5,7.5" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\Flow D_ITEMS"
+          TopLeft="288.5,84.5" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Flow D_ORDERS"
+          TopLeft="298.5,260.5" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Flow F_ORDERLINES"
+          TopLeft="281,343.5" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Trunc D_CUSTOMERS"
+          TopLeft="17,179" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Trunc D_ITEM_GROUPS"
+          TopLeft="13.5,6.5" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Trunc D_ITEMS"
+          TopLeft="21.5,88.5" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Trunc D_ORDERS"
+          TopLeft="21.5,262.5" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Trunc F_ORDERLINES"
+          TopLeft="24,347" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo]"
+          TopLeft="376,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-278,39"
+              Start="0,0"
+              End="-278,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5"
+                    Point2="0,19.5"
+                    Point3="-4,19.5" />
+                  <mssgle:LineSegment
+                    End="-274,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-274,19.5"
+                    Point2="-278,19.5"
+                    Point3="-278,23.5" />
+                  <mssgle:LineSegment
+                    End="-278,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo 1]"
+          TopLeft="362,126.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-254,52.5"
+              Start="0,0"
+              End="-254,45">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.25"
+                    Point2="0,26.25"
+                    Point3="-4,26.25" />
+                  <mssgle:LineSegment
+                    End="-250,26.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-250,26.25"
+                    Point2="-254,26.25"
+                    Point3="-254,30.25" />
+                  <mssgle:LineSegment
+                    End="-254,45" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo 2]"
+          TopLeft="379,216.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-276.5,46"
+              Start="0,0"
+              End="-276.5,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19"
+                    Point2="0,23"
+                    Point3="-4,23" />
+                  <mssgle:LineSegment
+                    End="-272.5,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-272.5,23"
+                    Point2="-276.5,23"
+                    Point3="-276.5,27" />
+                  <mssgle:LineSegment
+                    End="-276.5,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo 3]"
+          TopLeft="377,302.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-261.5,44.5"
+              Start="0,0"
+              End="-261.5,37">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.25"
+                    Point2="0,22.25"
+                    Point3="-4,22.25" />
+                  <mssgle:LineSegment
+                    End="-257.5,22.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-257.5,22.25"
+                    Point2="-261.5,22.25"
+                    Point3="-261.5,26.25" />
+                  <mssgle:LineSegment
+                    End="-261.5,37" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo 4]"
+          TopLeft="206.5,28">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76,0"
+              Start="0,0"
+              End="68.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="68.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo 5]"
+          TopLeft="174.5,107.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="114,0"
+              Start="0,0"
+              End="106.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="106.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo 6]"
+          TopLeft="199,197.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91.5000000000001,0"
+              Start="0,0"
+              End="84.0000000000001,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="84.0000000000001,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo 7]"
+          TopLeft="183.5,282.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="115,0"
+              Start="0,0"
+              End="107.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="107.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo 8]"
+          TopLeft="207,366.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="74.0000000000001,0"
+              Start="0,0"
+              End="66.5000000000001,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="66.5000000000001,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Flow D_CUSTOMERS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Flow D_CUSTOMERS\Load tab_customers"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Flow D_CUSTOMERS\D_CUSTOMERS"
+          TopLeft="22,123" />
+        <EdgeLayout
+          Id="Package\Flow D_CUSTOMERS.Paths[Output origine OLE DB]"
+          TopLeft="95.25,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,75.5"
+              Start="0,0"
+              End="0,68">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flow D_CUSTOMERS\D_CUSTOMERS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flow D_CUSTOMERS\Load tab_customers">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Flow D_ITEM_GROUPS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Flow D_ITEM_GROUPS\Load tab_item_groups"
+          TopLeft="5.50000000000001,5.5" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS"
+          TopLeft="16.5,107.5" />
+        <EdgeLayout
+          Id="Package\Flow D_ITEM_GROUPS.Paths[Output origine OLE DB]"
+          TopLeft="97.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Flow D_ITEMS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Flow D_ITEMS\Load tab_items"
+          TopLeft="5.50000000000001,5.5" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Flow D_ITEMS\D_ITEMS"
+          TopLeft="20,107.5" />
+        <EdgeLayout
+          Id="Package\Flow D_ITEMS.Paths[Output origine OLE DB]"
+          TopLeft="81,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flow D_ITEMS\D_ITEMS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flow D_ITEMS\Load tab_items">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Flow D_ORDERS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="135,42"
+          Id="Package\Flow D_ORDERS\Load orders"
+          TopLeft="5.50000000000001,5.5" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Flow D_ORDERS\D_ORDERS"
+          TopLeft="7.00000000000001,107.5" />
+        <EdgeLayout
+          Id="Package\Flow D_ORDERS.Paths[Output origine OLE DB]"
+          TopLeft="73,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flow D_ORDERS\D_ORDERS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flow D_ORDERS\Load orders">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Flow F_ORDERLINES">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Flow F_ORDERLINES\Load order_lines"
+          TopLeft="48,24" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Flow F_ORDERLINES\F_ORDERLINES"
+          TopLeft="44.5,120.5" />
+        <EdgeLayout
+          Id="Package\Flow F_ORDERLINES.Paths[Output origine OLE DB]"
+          TopLeft="123.75,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.5"
+              Start="0,0"
+              End="0,47">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flow F_ORDERLINES\F_ORDERLINES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flow F_ORDERLINES\Load order_lines">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

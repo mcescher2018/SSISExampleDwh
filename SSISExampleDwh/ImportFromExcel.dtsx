@@ -1,0 +1,488 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/29/2022 12:21:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="NAUTILUS"
+  DTS:CreatorName="NAUTILUS\nemo"
+  DTS:DTSID="{058DBB73-E215-4FBC-9294-A04A342569C4}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1040"
+  DTS:ObjectName="ImportFromExcel"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{61335296-D0EB-46B0-95C0-0D0ED8812767}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Gestione connessione Excel 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{6353B8B9-945E-43B4-A611-80C97B08BB27}"
+      DTS:ObjectName="Gestione connessione Excel 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Ludo\Clienti\Fabbri\2022\CRM_Qlik.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{98B388B5-B855-42B8-B662-B5D04B1DAD2E}"
+      DTS:ObjectName="NAUTILUS.example_dwh">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=NAUTILUS;Initial Catalog=example_dwh;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Attività Flusso di dati"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Attività Flusso di dati"
+      DTS:DTSID="{B69ADB81-CE2A-4601-BDD2-D206860AF35E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Attività Flusso di dati">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Attività Flusso di dati\ExcelDataOnDB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destinazione OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;4"
+              description="Destinazione OLE DB"
+              name="ExcelDataOnDB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset">[ExcelDataOnDB]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la tabella codici della colonna da utilizzare quando l'origine dati non rende disponibili informazioni sulla tabella codici."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forza l'utilizzo del valore della proprietà DefaultCodePage per la descrizione di dati di tipo carattere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se i valori specificati per le colonne Identity verranno copiati nella destinazione. Se false, i valori delle colonne Identity verranno generati automaticamente nella destinazione. Applicabile solo se è abilitato il caricamento rapido."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se per le colonne con valori Null, tali valori verranno inseriti nella destinazione. Se false, per le colonne con valori Null verranno inseriti i valori predefiniti corrispondenti nella destinazione. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica le opzioni da utilizzare con il caricamento rapido. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica se vengono eseguiti commit durante l'inserimento dei dati. Il valore 0 indica che verrà eseguito un solo commit al termine dell'inserimento dei dati. Applicabile solo se è attivato il caricamento rapido."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Attività Flusso di dati\ExcelDataOnDB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB]"
+                  errorOrTruncationOperation="Inserimento"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Input destinazione OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].Columns[Data]"
+                      cachedDataType="date"
+                      cachedName="Data"
+                      externalMetadataColumnId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].ExternalColumns[Data]"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Data]" />
+                    <inputColumn
+                      refId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].Columns[Articolo]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Articolo"
+                      externalMetadataColumnId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].ExternalColumns[Articolo]"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Articolo]" />
+                    <inputColumn
+                      refId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].Columns[Qta]"
+                      cachedDataType="r8"
+                      cachedName="Qta"
+                      externalMetadataColumnId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].ExternalColumns[Qta]"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Qta]" />
+                    <inputColumn
+                      refId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].Columns[Sorgente]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Sorgente"
+                      externalMetadataColumnId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].ExternalColumns[Sorgente]"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Sorgente]" />
+                    <inputColumn
+                      refId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].Columns[Destinazione]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Destinazione"
+                      externalMetadataColumnId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].ExternalColumns[Destinazione]"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Destinazione]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].ExternalColumns[Data]"
+                      dataType="dbTimeStamp"
+                      name="Data" />
+                    <externalMetadataColumn
+                      refId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].ExternalColumns[Articolo]"
+                      dataType="wstr"
+                      length="255"
+                      name="Articolo" />
+                    <externalMetadataColumn
+                      refId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].ExternalColumns[Qta]"
+                      dataType="r8"
+                      name="Qta" />
+                    <externalMetadataColumn
+                      refId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].ExternalColumns[Sorgente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Sorgente" />
+                    <externalMetadataColumn
+                      refId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB].ExternalColumns[Destinazione]"
+                      dataType="wstr"
+                      length="255"
+                      name="Destinazione" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Attività Flusso di dati\ExcelDataOnDB.Outputs[Output errori destinazione OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Output errori destinazione OLE DB"
+                  synchronousInputId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\ExcelDataOnDB.Outputs[Output errori destinazione OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Attività Flusso di dati\ExcelDataOnDB.Outputs[Output errori destinazione OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\ExcelDataOnDB.Outputs[Output errori destinazione OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Attività Flusso di dati\ExcelDataOnDB.Outputs[Output errori destinazione OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Attività Flusso di dati\Origine Excel"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Origine Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tutti i diritti sono riservati; http://www.microsoft.com/sql/support;1"
+              description="Origine Excel"
+              name="Origine Excel"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Numero di secondi prima del timeout di un comando. Il valore 0 indica nessun timeout."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Comando SQL da eseguire."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM [Dati$A:E]</property>
+                <property
+                  dataType="System.String"
+                  description="Variabile che contiene il comando SQL da eseguire."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifica la modalità utilizzata per accedere al database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mapping tra i parametri nel comando SQL e le variabili."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Attività Flusso di dati\Origine Excel.Connections[OleDbConnection]"
+                  connectionManagerID="{2A8FD66D-72E6-4DE5-84E9-317A69CF24D2}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Gestione connessione Excel]"
+                  description="Connessione di run-time OLE DB utilizzata per accedere al database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel]"
+                  name="Output origine Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Data]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].ExternalColumns[Data]"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Data]"
+                      name="Data"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Articolo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].ExternalColumns[Articolo]"
+                      length="255"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Articolo]"
+                      name="Articolo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Qta]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].ExternalColumns[Qta]"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Qta]"
+                      name="Qta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Sorgente]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].ExternalColumns[Sorgente]"
+                      length="255"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Sorgente]"
+                      name="Sorgente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Destinazione]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversione"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].ExternalColumns[Destinazione]"
+                      length="255"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].Columns[Destinazione]"
+                      name="Destinazione"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].ExternalColumns[Data]"
+                      dataType="date"
+                      name="Data" />
+                    <externalMetadataColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].ExternalColumns[Articolo]"
+                      dataType="wstr"
+                      length="255"
+                      name="Articolo" />
+                    <externalMetadataColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].ExternalColumns[Qta]"
+                      dataType="r8"
+                      name="Qta" />
+                    <externalMetadataColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].ExternalColumns[Sorgente]"
+                      dataType="wstr"
+                      length="255"
+                      name="Sorgente" />
+                    <externalMetadataColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel].ExternalColumns[Destinazione]"
+                      dataType="wstr"
+                      length="255"
+                      name="Destinazione" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel]"
+                  isErrorOut="true"
+                  name="Output errori origine Excel">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[Data]"
+                      dataType="date"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[Data]"
+                      name="Data" />
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[Articolo]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[Articolo]"
+                      name="Articolo" />
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[Qta]"
+                      dataType="r8"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[Qta]"
+                      name="Qta" />
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[Sorgente]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[Sorgente]"
+                      name="Sorgente" />
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[Destinazione]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[Destinazione]"
+                      name="Destinazione" />
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output errori origine Excel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Attività Flusso di dati.Paths[Output origine Excel]"
+              endId="Package\Attività Flusso di dati\ExcelDataOnDB.Inputs[Input destinazione OLE DB]"
+              name="Output origine Excel"
+              startId="Package\Attività Flusso di dati\Origine Excel.Outputs[Output origine Excel]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Questa sezione CDATA contiene le informazioni sul layout del pacchetto e include informazioni quali coordinate (x,y), larghezza e altezza.-->
+<!--Se si modifica manualmente la sezione e si commette un errore, è possibile eliminarla. -->
+<!--Sarà comunque possibile caricare manualmente il pacchetto, ma le informazioni precedenti sul layout verranno perse e gli elementi verranno nuovamente disposti nell'area di progettazione all'interno dell'apposita finestra.-->
+<Objects
+  Version="8">
+  <!--Ogni nodo seguente conterrà proprietà che non influiscono sul comportamento di runtime.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Attività Flusso di dati"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Attività Flusso di dati">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Attività Flusso di dati\Origine Excel"
+          TopLeft="302,72" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Attività Flusso di dati\ExcelDataOnDB"
+          TopLeft="301,211" />
+        <EdgeLayout
+          Id="Package\Attività Flusso di dati.Paths[Output origine Excel]"
+          TopLeft="374.5,114">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,97"
+              Start="0,0"
+              End="0,89.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,89.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Attività Flusso di dati\ExcelDataOnDB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Attività Flusso di dati\Origine Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
