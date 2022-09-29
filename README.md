@@ -10,3 +10,4 @@ Package
 - CallAPI, chiamata ad una API da SSIS e esempio di script con codice C#
 - ImportFromExcel, caricamento dati da Excel a tabella SQL Server 
 
+I dati di esempio (DB e DWH da importare in un'istanza SQL cui connettersi e files Excel per le varie operazioni) sono nella cartella Data.
