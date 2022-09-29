@@ -11,36 +11,10 @@
   DTS:LocaleID="1040"
   DTS:ObjectName="ImportFromExcel"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{61335296-D0EB-46B0-95C0-0D0ED8812767}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{FFA3F7A6-5018-4096-8089-4A6C7D84DA8A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Gestione connessione Excel 1]"
-      DTS:CreationName="EXCEL"
-      DTS:DTSID="{6353B8B9-945E-43B4-A611-80C97B08BB27}"
-      DTS:ObjectName="Gestione connessione Excel 1">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="0"
-          DTS:ConnectRetryInterval="0"
-          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Ludo\Clienti\Fabbri\2022\CRM_Qlik.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{98B388B5-B855-42B8-B662-B5D04B1DAD2E}"
-      DTS:ObjectName="NAUTILUS.example_dwh">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=NAUTILUS;Initial Catalog=example_dwh;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -72,7 +46,7 @@
                 <property
                   dataType="System.String"
                   description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
-                  name="OpenRowset">[ExcelDataOnDB]</property>
+                  name="OpenRowset">[dbo].[ExcelDataOnDB]</property>
                 <property
                   dataType="System.String"
                   description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
@@ -115,8 +89,8 @@
               <connections>
                 <connection
                   refId="Package\Attività Flusso di dati\ExcelDataOnDB.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_dwh]"
-                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  connectionManagerID="{5F2857AF-D4E7-4E24-94B2-3E3FA278126F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Example_dwh]"
                   description="Connessione di run-time OLE DB utilizzata per accedere al database."
                   name="OleDbConnection" />
               </connections>
@@ -419,7 +393,7 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="177,42"
+          Size="176.8,41.6"
           Id="Package\Attività Flusso di dati"
           TopLeft="5.5,5.5" />
       </GraphLayout>
@@ -431,13 +405,13 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="140,42"
-          Id="Package\Attività Flusso di dati\Origine Excel"
-          TopLeft="302,72" />
-        <NodeLayout
-          Size="152,42"
+          Size="152,41.6"
           Id="Package\Attività Flusso di dati\ExcelDataOnDB"
           TopLeft="301,211" />
+        <NodeLayout
+          Size="140,41.6"
+          Id="Package\Attività Flusso di dati\Origine Excel"
+          TopLeft="302,72" />
         <EdgeLayout
           Id="Package\Attività Flusso di dati.Paths[Output origine Excel]"
           TopLeft="374.5,114">

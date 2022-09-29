@@ -11,36 +11,10 @@
   DTS:LocaleID="1040"
   DTS:ObjectName="BasicETL"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{F37BDB71-1CF1-4711-B500-7EF18FF03912}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{8A0564B5-92DF-4541-AA31-A80C4C509AA1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[NAUTILUS.example_db]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{3FACF9A9-F2CE-41B3-9FA8-695937D28690}"
-      DTS:ObjectName="NAUTILUS.example_db">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=NAUTILUS;Initial Catalog=example_db;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{65432723-A4BB-416F-BBD1-A950A266DBD6}"
-      DTS:ObjectName="NAUTILUS.example_dwh">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=NAUTILUS;Initial Catalog=example_dwh;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -73,7 +47,7 @@
                 <property
                   dataType="System.String"
                   description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
-                  name="OpenRowset">[D_CUSTOMERS]</property>
+                  name="OpenRowset">[dbo].[D_CUSTOMERS]</property>
                 <property
                   dataType="System.String"
                   description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
@@ -116,8 +90,8 @@
               <connections>
                 <connection
                   refId="Package\Flow D_CUSTOMERS\D_CUSTOMERS.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_dwh]"
-                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  connectionManagerID="{5F2857AF-D4E7-4E24-94B2-3E3FA278126F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Example_dwh]"
                   description="Connessione di run-time OLE DB utilizzata per accedere al database."
                   name="OleDbConnection" />
               </connections>
@@ -231,8 +205,8 @@
               <connections>
                 <connection
                   refId="Package\Flow D_CUSTOMERS\Load tab_customers.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_db]"
-                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  connectionManagerID="{92A97DAA-9294-4229-BBD3-DF9E6AE57667}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Example_db]"
                   description="Connessione di run-time OLE DB utilizzata per accedere al database."
                   name="OleDbConnection" />
               </connections>
@@ -345,7 +319,7 @@
                 <property
                   dataType="System.String"
                   description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
-                  name="OpenRowset">[D_ITEMS]</property>
+                  name="OpenRowset">[dbo].[D_ITEMS]</property>
                 <property
                   dataType="System.String"
                   description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
@@ -388,8 +362,8 @@
               <connections>
                 <connection
                   refId="Package\Flow D_ITEMS\D_ITEMS.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_dwh]"
-                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  connectionManagerID="{5F2857AF-D4E7-4E24-94B2-3E3FA278126F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Example_dwh]"
                   description="Connessione di run-time OLE DB utilizzata per accedere al database."
                   name="OleDbConnection" />
               </connections>
@@ -527,8 +501,8 @@
               <connections>
                 <connection
                   refId="Package\Flow D_ITEMS\Load tab_items.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_db]"
-                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  connectionManagerID="{92A97DAA-9294-4229-BBD3-DF9E6AE57667}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Example_db]"
                   description="Connessione di run-time OLE DB utilizzata per accedere al database."
                   name="OleDbConnection" />
               </connections>
@@ -683,7 +657,7 @@
                 <property
                   dataType="System.String"
                   description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
-                  name="OpenRowset">[D_ITEM_GROUPS]</property>
+                  name="OpenRowset">[dbo].[D_ITEM_GROUPS]</property>
                 <property
                   dataType="System.String"
                   description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
@@ -726,8 +700,8 @@
               <connections>
                 <connection
                   refId="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_dwh]"
-                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  connectionManagerID="{5F2857AF-D4E7-4E24-94B2-3E3FA278126F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Example_dwh]"
                   description="Connessione di run-time OLE DB utilizzata per accedere al database."
                   name="OleDbConnection" />
               </connections>
@@ -841,8 +815,8 @@
               <connections>
                 <connection
                   refId="Package\Flow D_ITEM_GROUPS\Load tab_item_groups.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_db]"
-                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  connectionManagerID="{92A97DAA-9294-4229-BBD3-DF9E6AE57667}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Example_db]"
                   description="Connessione di run-time OLE DB utilizzata per accedere al database."
                   name="OleDbConnection" />
               </connections>
@@ -955,7 +929,7 @@
                 <property
                   dataType="System.String"
                   description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
-                  name="OpenRowset">[D_ORDERS]</property>
+                  name="OpenRowset">[dbo].[D_ORDERS]</property>
                 <property
                   dataType="System.String"
                   description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
@@ -998,8 +972,8 @@
               <connections>
                 <connection
                   refId="Package\Flow D_ORDERS\D_ORDERS.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_dwh]"
-                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  connectionManagerID="{5F2857AF-D4E7-4E24-94B2-3E3FA278126F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Example_dwh]"
                   description="Connessione di run-time OLE DB utilizzata per accedere al database."
                   name="OleDbConnection" />
               </connections>
@@ -1133,8 +1107,8 @@
               <connections>
                 <connection
                   refId="Package\Flow D_ORDERS\Load orders.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_db]"
-                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  connectionManagerID="{92A97DAA-9294-4229-BBD3-DF9E6AE57667}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Example_db]"
                   description="Connessione di run-time OLE DB utilizzata per accedere al database."
                   name="OleDbConnection" />
               </connections>
@@ -1283,7 +1257,7 @@
                 <property
                   dataType="System.String"
                   description="Specifica il nome dell'oggetto di database utilizzato per aprire un set di righe."
-                  name="OpenRowset">[F_ORDERLINES]</property>
+                  name="OpenRowset">[dbo].[F_ORDERLINES]</property>
                 <property
                   dataType="System.String"
                   description="Specifica la variabile contenente il nome dell'oggetto di database utilizzato per aprire un set di righe."
@@ -1326,8 +1300,8 @@
               <connections>
                 <connection
                   refId="Package\Flow F_ORDERLINES\F_ORDERLINES.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_dwh]"
-                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_dwh]"
+                  connectionManagerID="{5F2857AF-D4E7-4E24-94B2-3E3FA278126F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Example_dwh]"
                   description="Connessione di run-time OLE DB utilizzata per accedere al database."
                   name="OleDbConnection" />
               </connections>
@@ -1461,8 +1435,8 @@
               <connections>
                 <connection
                   refId="Package\Flow F_ORDERLINES\Load order_lines.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[NAUTILUS.example_db]"
-                  connectionManagerRefId="Package.ConnectionManagers[NAUTILUS.example_db]"
+                  connectionManagerID="{92A97DAA-9294-4229-BBD3-DF9E6AE57667}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Example_db]"
                   description="Connessione di run-time OLE DB utilizzata per accedere al database."
                   name="OleDbConnection" />
               </connections>
@@ -1585,7 +1559,6 @@
       DTS:refId="Package\Trunc D_CUSTOMERS"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Attività Esegui SQL"
-      DTS:Disabled="True"
       DTS:DTSID="{5765c92b-89ad-48f6-a825-9b80af116bd2}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -1595,15 +1568,14 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{65432723-A4BB-416F-BBD1-A950A266DBD6}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.D_CUSTOMERS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{5F2857AF-D4E7-4E24-94B2-3E3FA278126F}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.D_CUSTOMERS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Trunc D_ITEMS"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Attività Esegui SQL"
-      DTS:Disabled="True"
       DTS:DTSID="{9d3e7d34-50d8-4a8c-8b73-5bb295980168}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -1613,15 +1585,14 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{65432723-A4BB-416F-BBD1-A950A266DBD6}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.D_ITEMS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{5F2857AF-D4E7-4E24-94B2-3E3FA278126F}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.D_ITEMS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Trunc D_ITEM_GROUPS"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Attività Esegui SQL"
-      DTS:Disabled="True"
       DTS:DTSID="{79513903-D9A9-42DF-803E-4B2CB409FD9C}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -1631,15 +1602,14 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{65432723-A4BB-416F-BBD1-A950A266DBD6}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.D_ITEM_GROUPS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{5F2857AF-D4E7-4E24-94B2-3E3FA278126F}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.D_ITEM_GROUPS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Trunc D_ORDERS"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Attività Esegui SQL"
-      DTS:Disabled="True"
       DTS:DTSID="{0045bc64-3aec-4326-bc29-333423e2bdcb}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -1649,15 +1619,14 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{65432723-A4BB-416F-BBD1-A950A266DBD6}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.D_ORDERS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{5F2857AF-D4E7-4E24-94B2-3E3FA278126F}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.D_ORDERS" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Trunc F_ORDERLINES"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Attività Esegui SQL"
-      DTS:Disabled="True"
       DTS:DTSID="{d883e6d8-3d23-40b9-90b0-1cfb7dbf47f7}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
@@ -1667,8 +1636,8 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{65432723-A4BB-416F-BBD1-A950A266DBD6}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.F_ORDERLINES" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{5F2857AF-D4E7-4E24-94B2-3E3FA278126F}"
+          SQLTask:SqlStatementSource="DELETE FROM dbo.F_ORDERLINES" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -1676,39 +1645,39 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Vincolo]"
       DTS:CreationName=""
-      DTS:DTSID="{40FDDF14-0D0B-4C52-BAB8-BD92C03359C2}"
-      DTS:From="Package\Flow D_ITEM_GROUPS"
+      DTS:DTSID="{9E6EA5B2-E7C5-4B5F-B5C0-7457DE521C15}"
+      DTS:From="Package\Trunc F_ORDERLINES"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Vincolo"
-      DTS:To="Package\Trunc D_ITEMS" />
+      DTS:To="Package\Trunc D_ORDERS" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Vincolo 1]"
       DTS:CreationName=""
-      DTS:DTSID="{FF176D04-BA52-4424-BFB5-EF743621C00E}"
-      DTS:From="Package\Flow D_ITEMS"
+      DTS:DTSID="{9DF0FB08-09B1-42B0-8CE2-DA3668429FE4}"
+      DTS:From="Package\Trunc D_ORDERS"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Vincolo 1"
       DTS:To="Package\Trunc D_CUSTOMERS" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Vincolo 2]"
       DTS:CreationName=""
-      DTS:DTSID="{F8ABBD90-BD90-4F40-B598-F2828E2AC9D3}"
-      DTS:From="Package\Flow D_CUSTOMERS"
+      DTS:DTSID="{2C54FC52-0C7F-4DB2-A311-FA6609674684}"
+      DTS:From="Package\Trunc D_CUSTOMERS"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Vincolo 2"
-      DTS:To="Package\Trunc D_ORDERS" />
+      DTS:To="Package\Trunc D_ITEMS" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Vincolo 3]"
       DTS:CreationName=""
-      DTS:DTSID="{02209B23-8630-45E3-A4C6-2CAC4C850585}"
-      DTS:From="Package\Flow D_ORDERS"
+      DTS:DTSID="{28AB669C-AE93-4939-8C36-613549767EF6}"
+      DTS:From="Package\Trunc D_ITEMS"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Vincolo 3"
-      DTS:To="Package\Trunc F_ORDERLINES" />
+      DTS:To="Package\Trunc D_ITEM_GROUPS" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Vincolo 4]"
       DTS:CreationName=""
-      DTS:DTSID="{A4D1D861-E105-43CC-A9BB-41412EC6D38A}"
+      DTS:DTSID="{7C4BFCEA-67A0-4D66-AB45-1D1130806DE1}"
       DTS:From="Package\Trunc D_ITEM_GROUPS"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Vincolo 4"
@@ -1716,32 +1685,32 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Vincolo 5]"
       DTS:CreationName=""
-      DTS:DTSID="{48CB166C-9B4B-48C8-9804-127B2D0E3048}"
-      DTS:From="Package\Trunc D_ITEMS"
+      DTS:DTSID="{59A8BA4B-DF6F-423D-BAED-0F4EB6815979}"
+      DTS:From="Package\Flow D_ITEM_GROUPS"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Vincolo 5"
-      DTS:To="Package\Flow D_ITEMS" />
+      DTS:To="Package\Flow D_CUSTOMERS" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Vincolo 6]"
       DTS:CreationName=""
-      DTS:DTSID="{81E49136-C75A-4B80-9A5E-30874CD277FF}"
-      DTS:From="Package\Trunc D_CUSTOMERS"
+      DTS:DTSID="{E5AC7B4F-9BEB-4593-AC55-5B20C238F0C5}"
+      DTS:From="Package\Flow D_CUSTOMERS"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Vincolo 6"
-      DTS:To="Package\Flow D_CUSTOMERS" />
+      DTS:To="Package\Flow D_ITEMS" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Vincolo 7]"
       DTS:CreationName=""
-      DTS:DTSID="{9C4A575C-0EA5-4FE0-9A78-4B7FABE06D77}"
-      DTS:From="Package\Trunc D_ORDERS"
+      DTS:DTSID="{500FFAF6-6ADB-4BB2-9722-2903E5892E69}"
+      DTS:From="Package\Flow D_ITEMS"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Vincolo 7"
       DTS:To="Package\Flow D_ORDERS" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Vincolo 8]"
       DTS:CreationName=""
-      DTS:DTSID="{C1E96D1F-FC5C-492B-AB3B-F8435DB71CD0}"
-      DTS:From="Package\Trunc F_ORDERLINES"
+      DTS:DTSID="{1F0E76A2-B5C4-4266-8996-F192BAC3A4C1}"
+      DTS:From="Package\Flow D_ORDERS"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Vincolo 8"
       DTS:To="Package\Flow F_ORDERLINES" />
@@ -1759,139 +1728,59 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="177,42"
+          Size="176.8,41.6"
           Id="Package\Flow D_CUSTOMERS"
-          TopLeft="290.5,174.5" />
+          TopLeft="476.928574603431,424.076473269413" />
         <NodeLayout
-          Size="187,42"
+          Size="187.2,41.6"
           Id="Package\Flow D_ITEM_GROUPS"
-          TopLeft="282.5,7.5" />
+          TopLeft="474.642860415031,336.323534023391" />
         <NodeLayout
-          Size="147,42"
+          Size="147.2,41.6"
           Id="Package\Flow D_ITEMS"
-          TopLeft="288.5,84.5" />
+          TopLeft="491.357146311779,498.288240098788" />
         <NodeLayout
-          Size="157,42"
+          Size="156.8,41.6"
           Id="Package\Flow D_ORDERS"
-          TopLeft="298.5,260.5" />
+          TopLeft="486.357146056331,572.464708810199" />
         <NodeLayout
-          Size="178,42"
+          Size="177.6,41.6"
           Id="Package\Flow F_ORDERLINES"
-          TopLeft="281,343.5" />
+          TopLeft="481.00000340598,642.041179344811" />
         <NodeLayout
-          Size="182,42"
+          Size="181.6,41.6"
           Id="Package\Trunc D_CUSTOMERS"
-          TopLeft="17,179" />
+          TopLeft="14.8571428206502,165.99999981768" />
         <NodeLayout
-          Size="193,42"
+          Size="192,41.6"
           Id="Package\Trunc D_ITEM_GROUPS"
-          TopLeft="13.5,6.5" />
+          TopLeft="13.5000000000001,332.26471045108" />
         <NodeLayout
-          Size="153,42"
+          Size="152,41.6"
           Id="Package\Trunc D_ITEMS"
-          TopLeft="21.5,88.5" />
+          TopLeft="25.7857143586996,241.44117861553" />
         <NodeLayout
-          Size="162,42"
+          Size="161.6,41.6"
           Id="Package\Trunc D_ORDERS"
-          TopLeft="21.5,262.5" />
+          TopLeft="25.7857143586997,87.3823504852174" />
         <NodeLayout
-          Size="183,42"
+          Size="183.2,41.6"
           Id="Package\Trunc F_ORDERLINES"
-          TopLeft="24,347" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Vincolo]"
-          TopLeft="376,49.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-278,39"
-              Start="0,0"
-              End="-278,31.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,15.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.5"
-                    Point2="0,19.5"
-                    Point3="-4,19.5" />
-                  <mssgle:LineSegment
-                    End="-274,19.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-274,19.5"
-                    Point2="-278,19.5"
-                    Point3="-278,23.5" />
-                  <mssgle:LineSegment
-                    End="-278,31.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Vincolo 1]"
-          TopLeft="362,126.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-254,52.5"
-              Start="0,0"
-              End="-254,45">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.25"
-                    Point2="0,26.25"
-                    Point3="-4,26.25" />
-                  <mssgle:LineSegment
-                    End="-250,26.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-250,26.25"
-                    Point2="-254,26.25"
-                    Point3="-254,30.25" />
-                  <mssgle:LineSegment
-                    End="-254,45" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="16.1428570090508,10.5294070458329" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Vincolo 2]"
-          TopLeft="379,216.5">
+          TopLeft="103.721428589675,207.59999981768">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-276.5,46"
+              EndConnector="0,33.8411787978504"
               Start="0,0"
-              End="-276.5,38.5">
+              End="0,26.3411787978504">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,19"
-                    Point2="0,23"
-                    Point3="-4,23" />
-                  <mssgle:LineSegment
-                    End="-272.5,23" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-272.5,23"
-                    Point2="-276.5,23"
-                    Point3="-276.5,27" />
-                  <mssgle:LineSegment
-                    End="-276.5,38.5" />
+                    End="0,26.3411787978504" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1902,52 +1791,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Vincolo 3]"
-          TopLeft="377,302.5">
+          TopLeft="105.64285717935,283.04117861553">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-261.5,44.5"
+              EndConnector="0,49.2235318355496"
               Start="0,0"
-              End="-261.5,37">
+              End="0,41.7235318355496">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,18.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,18.25"
-                    Point2="0,22.25"
-                    Point3="-4,22.25" />
-                  <mssgle:LineSegment
-                    End="-257.5,22.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-257.5,22.25"
-                    Point2="-261.5,22.25"
-                    Point3="-261.5,26.25" />
-                  <mssgle:LineSegment
-                    End="-261.5,37" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Vincolo 4]"
-          TopLeft="206.5,28">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="76,0"
-              Start="0,0"
-              End="68.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="68.5,0" />
+                    End="0,41.7235318355496" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1958,18 +1813,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Vincolo 5]"
-          TopLeft="174.5,107.5">
+          TopLeft="566.785717509231,377.923534023391">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="114,0"
+              EndConnector="0,46.1529392460225"
               Start="0,0"
-              End="106.5,0">
+              End="0,38.6529392460225">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="106.5,0" />
+                    End="0,38.6529392460225" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1980,18 +1835,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Vincolo 6]"
-          TopLeft="199,197.75">
+          TopLeft="565.142860457605,465.676473269413">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="91.5000000000001,0"
+              EndConnector="0,32.6117668293752"
               Start="0,0"
-              End="84.0000000000001,0">
+              End="0,25.1117668293752">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="84.0000000000001,0" />
+                    End="0,25.1117668293752" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2002,18 +1857,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Vincolo 7]"
-          TopLeft="183.5,282.5">
+          TopLeft="564.857146184055,539.888240098788">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="115,0"
+              EndConnector="0,32.5764687114108"
               Start="0,0"
-              End="107.5,0">
+              End="0,25.0764687114108">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="107.5,0" />
+                    End="0,25.0764687114108" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2024,18 +1879,84 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Vincolo 8]"
-          TopLeft="207,366.25">
+          TopLeft="567.278574731155,614.064708810199">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="74.0000000000001,0"
+              EndConnector="0,27.9764705346118"
               Start="0,0"
-              End="66.5000000000001,0">
+              End="0,20.4764705346118">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="66.5000000000001,0" />
+                    End="0,20.4764705346118" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo]"
+          TopLeft="107.164285683875,52.1294070458329">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.2529434393846"
+              Start="0,0"
+              End="0,27.7529434393846">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.7529434393846" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo 1]"
+          TopLeft="106.121428589675,128.982350485217">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.0176493324625"
+              Start="0,0"
+              End="0,29.5176493324625">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5176493324625" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo 4]"
+          TopLeft="205.5,355.094122237235">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="269.142860415031,0"
+              Start="0,0"
+              End="261.642860415031,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="261.642860415031,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2051,13 +1972,13 @@
     design-time-name="Package\Flow D_CUSTOMERS">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="174,42"
+          Size="174.4,41.6"
           Id="Package\Flow D_CUSTOMERS\Load tab_customers"
           TopLeft="5.5,5.5" />
         <NodeLayout
-          Size="152,42"
+          Size="152,41.6"
           Id="Package\Flow D_CUSTOMERS\D_CUSTOMERS"
           TopLeft="22,123" />
         <EdgeLayout
@@ -2079,9 +2000,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -2117,13 +2036,13 @@
     design-time-name="Package\Flow D_ITEM_GROUPS">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="184,42"
+          Size="184,41.6"
           Id="Package\Flow D_ITEM_GROUPS\Load tab_item_groups"
           TopLeft="5.50000000000001,5.5" />
         <NodeLayout
-          Size="162,42"
+          Size="161.6,41.6"
           Id="Package\Flow D_ITEM_GROUPS\D_ITEM_GROUPS"
           TopLeft="16.5,107.5" />
         <EdgeLayout
@@ -2145,9 +2064,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -2166,17 +2083,30 @@
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Flow D_ITEM_GROUPS\Load tab_item_groups">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Flow D_ITEMS">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="151,42"
+          Size="151.2,41.6"
           Id="Package\Flow D_ITEMS\Load tab_items"
           TopLeft="5.50000000000001,5.5" />
         <NodeLayout
-          Size="122,42"
+          Size="121.6,41.6"
           Id="Package\Flow D_ITEMS\D_ITEMS"
           TopLeft="20,107.5" />
         <EdgeLayout
@@ -2198,9 +2128,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -2236,13 +2164,13 @@
     design-time-name="Package\Flow D_ORDERS">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="135,42"
+          Size="135.2,41.6"
           Id="Package\Flow D_ORDERS\Load orders"
           TopLeft="5.50000000000001,5.5" />
         <NodeLayout
-          Size="132,42"
+          Size="132,41.6"
           Id="Package\Flow D_ORDERS\D_ORDERS"
           TopLeft="7.00000000000001,107.5" />
         <EdgeLayout
@@ -2264,9 +2192,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -2302,13 +2228,13 @@
     design-time-name="Package\Flow F_ORDERLINES">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="157,42"
+          Size="156.8,41.6"
           Id="Package\Flow F_ORDERLINES\Load order_lines"
           TopLeft="48,24" />
         <NodeLayout
-          Size="153,42"
+          Size="152.8,41.6"
           Id="Package\Flow F_ORDERLINES\F_ORDERLINES"
           TopLeft="44.5,120.5" />
         <EdgeLayout
@@ -2330,9 +2256,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
