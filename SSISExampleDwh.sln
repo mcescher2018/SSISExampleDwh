@@ -5,6 +5,22 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "SSISExampleDwh", "SSISExampleDwh\SSISExampleDwh.dtproj", "{E4B70F2F-A6CE-475D-A017-430B79C07229}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{8E5EDC87-85CA-4239-B649-4D49B078DA77}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Temp\example_db.bak = ..\..\..\Temp\example_db.bak
+		..\..\..\Temp\example_dwh.bak = ..\..\..\Temp\example_dwh.bak
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "C_Temp", "C_Temp", "{0A00C248-1F3C-45BD-A963-DECB472599DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "files_per_ssis", "files_per_ssis", "{E9511458-7777-4554-9729-D011243B7B34}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Temp\files_per_ssis\A.xlsx = ..\..\..\Temp\files_per_ssis\A.xlsx
+		..\..\..\Temp\files_per_ssis\B.xlsx = ..\..\..\Temp\files_per_ssis\B.xlsx
+		..\..\..\Temp\files_per_ssis\C.xlsx = ..\..\..\Temp\files_per_ssis\C.xlsx
+		..\..\..\Temp\files_per_ssis\TrasfMag.xls = ..\..\..\Temp\files_per_ssis\TrasfMag.xls
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Development|Default = Development|Default
@@ -15,6 +31,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0A00C248-1F3C-45BD-A963-DECB472599DE} = {8E5EDC87-85CA-4239-B649-4D49B078DA77}
+		{E9511458-7777-4554-9729-D011243B7B34} = {0A00C248-1F3C-45BD-A963-DECB472599DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D77DB825-1A2F-4CC2-AC96-81BF4A47C3FA}
