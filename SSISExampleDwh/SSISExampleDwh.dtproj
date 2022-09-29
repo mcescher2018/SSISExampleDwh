@@ -26,14 +26,14 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">NAUTILUS</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAvGutv6fCGUmddUdQnprVaQAAAAACAAAAAAAQZgAAAAEAACAAAADTE3vzOnJ5sHptDxwqahsVFQk/sM2DgBaagJU+c6FEmQAAAAAOgAAAAAIAACAAAABzxuP7bteG6R3pZJ6iDXZRIfqmUlXNnlCzuu1h7EiyaZAAAADnUktkYdgJSrd34W+Ur3jTg47V+ZxU1wLtvA9tXGPYhjZiMcNDuIJC9n3KEAAwxmPDEzQwujlHcO1aNFtMy+or+9I5N9apof9r6nRBuyKJuZ1fAmQyHsRb+7AtiA0UGqqniiD2bYwt5cNpSeYulFUXwgtGyUthbCZ5SmQANuV0m0UwWyzDczkv3I4Pw2/AStVAAAAAgTEGMG7ZdTo8EDSg5/wLmvq6BntQXU50a0Us1AHf912MdXuQYvq7tjf6E5jdxFuv+uWq+tiZUmFriWAl1KWcSg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAvGutv6fCGUmddUdQnprVaQAAAAACAAAAAAAQZgAAAAEAACAAAADXnMCeohAst6EspEJdYmnAbH3VcpCJtckCDWpWJk6zsQAAAAAOgAAAAAIAACAAAACUVKXUY1XJwre6OqhFCgv2IvpgtAORaVW2IeuqcLQIzpAAAAA1w5BmcVx5s+v0W4nAG/lMku1Wi4HqUL6xyeTiRYvMVoaF6KYI8Bbt55EVUEf65kTyi8O/zfZpfH9DG3j+9ypmLqP3EPARtxmsfngiVtP9NedDMXMMvh6dFjAol2IlG6EQHPGI0so0bcSNVQL7zClRslXkvRjTCnrvglAoxqqioveuYR/va46amwu7rU44nOJAAAAAHs9P20aLAJ962xWktDt3Z6Q4F1lWcWxEzG/s3eyIRcJ+3FIL7MB6ztbQhleDfn9mF/S2NZIR8HuHcEU84BZf/w==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="ImportFromExcel.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Blobs.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="ExecBatch.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="BasicETL.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="CallAPI.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="Gestione connessione Excel.conmgr" />
@@ -537,23 +537,6 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="ExecBatch.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{0D566D8E-0E75-419F-9447-3057BCB96456}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">ExecBatch</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{11380EC4-B128-4841-9362-2D920A1F1EFA}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
             <SSIS:PackageMetaData SSIS:Name="BasicETL.dtsx">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">{3F00C035-3120-415E-A285-E480DAA326AB}</SSIS:Property>
@@ -564,6 +547,23 @@
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionGUID">{8A0564B5-92DF-4541-AA31-A80C4C509AA1}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="CallAPI.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{A707D838-15EE-42B1-A7CD-587D4210C849}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">CallAPI</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">5</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{8A299C1E-A8E6-4925-93F5-3A2AC2CF3734}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
