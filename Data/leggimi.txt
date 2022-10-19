@@ -1,0 +1,1 @@
+la cartella files_per_ssis va posizionata sotto C:\temp (altrimenti cambiare le connection strings)
