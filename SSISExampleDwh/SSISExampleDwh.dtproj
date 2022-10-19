@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">NAUTILUS</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAvGutv6fCGUmddUdQnprVaQAAAAACAAAAAAAQZgAAAAEAACAAAAD3316vQTpZimR3jVyKW0HizW/mC52x3pq/TP1faDUpjAAAAAAOgAAAAAIAACAAAACNJOwAW+AflSyS8wsYr2BGmqKPG5wHyKSh6NIcr6MHUZAAAABaKSf+AbfNRKc6Z7PXoup2r117UeZ0Apm7hwkkdjcJF3JR+yyKuA6oYPwZG2kUNcxVvV9SwrsdBHmRMcKPbnTkVjKJikXUI6eKcK0pXNYracIM+8MEXWDx37CMIuuiDClGOii82F7TWHJlMBOMYlXop3VYefZ7m9Ujnlv742/cDwjlX89uSUODnk7lQTuQ1kpAAAAA5qRUStWfCbZ44Cd/xOBEsIgnIru/1+0gva7OMsN3fJHqv29yXk9Bnk+KGZZmE/vKEqFh0Vf3H67RwdHA1pM/1A==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAvGutv6fCGUmddUdQnprVaQAAAAACAAAAAAAQZgAAAAEAACAAAABlStvsQerUGIncgLPHgOsXFdfO7XOhA/Sj3fpIWjAIPAAAAAAOgAAAAAIAACAAAAD41psP8GMDdJJp/Vzp12tjP/oPzQqOlIseabxQMnZOBZAAAAARhG8DoeCIMJnha1LgJeBpLlToxtZ2m+nX1BLGA72GXx6VrBYrgoZgwo0dOkJIio769rfPoizM5zlKGsVnm9NGriZqydxnQDPpxYZbiEXD6kUVTDqiKBRKzPhOE9ejWRZHKI5QdMC/zYtXznf6LmrlnaQCAGGeleUddpiSwnX9ftxlaiUt76vHbPPV7VL4lc1AAAAAq8+0HpQcHpKUy1TQk0y3uhSLmEKaB8mqmSaHwqSvELDcVWEpETz4JSFSv2LmAsQ7iuofcCH7DwsIYlQbpmKvvQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -529,7 +529,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Temp\files_per_ssis\Notes.xls;Extended Properties="Excel 8.0;HDR=YES";</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Temp\files_per_ssis\Notes.xls;Extended Properties="EXCEL 8.0;HDR=YES";</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -711,16 +711,77 @@
                 <SSIS:Property SSIS:Name="Name">ExportToExcel</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">12</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{BFE11F7B-54C6-41AD-BF3B-D4A569CBEABB}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{FC9A75F3-C6E3-47DE-AD98-01549FD9A863}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
-              <SSIS:Parameters />
+              <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="CM.Notes.xls.ConnectByProxy">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.Notes.xls.ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\Temp\files_per_ssis\Notes.xls</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.NotesVuoto.xls.ConnectByProxy">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.NotesVuoto.xls.ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\Temp\files_per_ssis\NotesVuoto.xls</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+              </SSIS:Parameters>
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>

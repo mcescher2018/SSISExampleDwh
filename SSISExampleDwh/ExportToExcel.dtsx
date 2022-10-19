@@ -11,10 +11,32 @@
   DTS:LocaleID="1040"
   DTS:ObjectName="ExportToExcel"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{1482EFC1-E931-4E76-A03C-4112757A4656}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{73A2CB9C-3D8C-4360-A488-0B6E015877E9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Notes.xls]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{5489D807-C30B-4411-BFC9-1973570CADBE}"
+      DTS:ObjectName="Notes.xls">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Temp\files_per_ssis\Notes.xls" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[NotesVuoto.xls]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{76C4E046-B08D-4EB9-AB69-DFA413EF5CBE}"
+      DTS:ObjectName="NotesVuoto.xls">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Temp\files_per_ssis\NotesVuoto.xls" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -369,7 +391,85 @@
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Elimina file precedente"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="Attività File system"
+      DTS:DTSID="{13FD2EEE-507B-47B9-9BA9-93F15B485250}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Elimina file precedente"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOperationType="DeleteFile"
+          TaskSourcePath="{5489D807-C30B-4411-BFC9-1973570CADBE}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Rinomina il Template"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="Attività File system"
+      DTS:DTSID="{EB78BC77-ECF8-4D76-B542-B950562B74B7}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Rinomina il Template"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOperationType="RenameFile"
+          TaskSourcePath="{76C4E046-B08D-4EB9-AB69-DFA413EF5CBE}"
+          TaskDestinationPath="{5489D807-C30B-4411-BFC9-1973570CADBE}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Salva Copia Template"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="Attività File system"
+      DTS:DTSID="{D345DBDC-08F9-419B-B943-884935AB486A}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Salva Copia Template"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskSourcePath="{5489D807-C30B-4411-BFC9-1973570CADBE}"
+          TaskDestinationPath="{76C4E046-B08D-4EB9-AB69-DFA413EF5CBE}" />
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Vincolo]"
+      DTS:CreationName=""
+      DTS:DTSID="{3CE1A941-FFEC-43AD-BF92-CDD514098ED8}"
+      DTS:From="Package\Elimina file precedente"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Vincolo"
+      DTS:To="Package\Rinomina il Template" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Vincolo 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{A6314224-FE1D-4FA7-A4B4-6AFF39E1C4DD}"
+      DTS:From="Package\Rinomina il Template"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Vincolo 1"
+      DTS:To="Package\Salva Copia Template" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Vincolo 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{9800C042-EFBD-4625-8E68-E1D60F85B3E4}"
+      DTS:From="Package\Salva Copia Template"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Vincolo 2"
+      DTS:To="Package\Attività Flusso di dati" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Questa sezione CDATA contiene le informazioni sul layout del pacchetto e include informazioni quali coordinate (x,y), larghezza e altezza.-->
 <!--Se si modifica manualmente la sezione e si commette un errore, è possibile eliminarla. -->
@@ -381,11 +481,89 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="177,42"
           Id="Package\Attività Flusso di dati"
-          TopLeft="124,97" />
+          TopLeft="210,341" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\Elimina file precedente"
+          TopLeft="196,45" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Rinomina il Template"
+          TopLeft="198,133" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo]"
+          TopLeft="288,87">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Salva Copia Template"
+          TopLeft="203,234" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo 1]"
+          TopLeft="290.25,175">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Vincolo 2]"
+          TopLeft="296,276">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65"
+              Start="0,0"
+              End="0,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -394,6 +572,10 @@
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Attività Flusso di dati\Destinazione Excel"
+          TopLeft="238,363" />
         <NodeLayout
           Size="177,42"
           Id="Package\Attività Flusso di dati\Read Notes From DB"
@@ -424,10 +606,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="166,42"
-          Id="Package\Attività Flusso di dati\Destinazione Excel"
-          TopLeft="238,363" />
         <EdgeLayout
           Id="Package\Attività Flusso di dati.Paths[Output colonna derivata]"
           TopLeft="331,282">
@@ -466,7 +644,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Attività Flusso di dati\Read Notes From DB">
+    design-time-name="Package\Attività Flusso di dati\Destinazione Excel">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -479,7 +657,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Attività Flusso di dati\Destinazione Excel">
+    design-time-name="Package\Attività Flusso di dati\Read Notes From DB">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
