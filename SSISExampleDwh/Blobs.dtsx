@@ -11,8 +11,8 @@
   DTS:LocaleID="1040"
   DTS:ObjectName="Blobs"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{BDE546C3-EEFB-4A31-8E5A-F0037D00A266}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{28DCEAFB-5A67-47F6-9737-52C0535BB958}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -402,11 +402,11 @@ SELECT LEFT(@a+[FileName]+@b,255) as [FileName]
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="175.2,41.6"
+          Size="175,42"
           Id="Package\Clear DB FileStorage"
           TopLeft="140,64" />
         <NodeLayout
-          Size="201.6,41.6"
+          Size="202,42"
           Id="Package\Importa dati da Blob a DB"
           TopLeft="125.5,163.5" />
         <EdgeLayout
@@ -440,15 +440,15 @@ SELECT LEFT(@a+[FileName]+@b,255) as [FileName]
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="164.8,41.6"
+          Size="165,42"
           Id="Package\Importa dati da Blob a DB\Leggi tabella nomi"
           TopLeft="278,85" />
         <NodeLayout
-          Size="176.8,41.6"
+          Size="177,42"
           Id="Package\Importa dati da Blob a DB\Scrivi Files in Tabella"
           TopLeft="272,240" />
         <NodeLayout
-          Size="241.6,41.6"
+          Size="242,42"
           Id="Package\Importa dati da Blob a DB\Importa Contenuti in Colonna Blob"
           TopLeft="244,160" />
         <EdgeLayout
