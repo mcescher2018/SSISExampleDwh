@@ -13,5 +13,6 @@ Package
 
 Note:
 
+- verificare che i connection manager siano coerenti con le impostazioni del PC dove si installa (percorsi file, nome istanza sql...)
 - attenzione all'export dei long text su Excel (vedi problema dell'inferenza del tipo dalle prime 8 righe)
 
